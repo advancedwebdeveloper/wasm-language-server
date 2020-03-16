@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Factory",""]]});
+initSidebarItems({"struct":[["Parser",""]]});
