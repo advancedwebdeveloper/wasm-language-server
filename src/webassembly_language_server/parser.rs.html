@@ -47,12 +47,14 @@
 <span id="47">47</span>
 <span id="48">48</span>
 <span id="49">49</span>
+<span id="50">50</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">error</span>::<span class="ident">Error</span>;
 <span class="kw">use</span> <span class="ident">failure</span>::<span class="ident">Fallible</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">sync</span>::<span class="ident">Mutex</span>;
 <span class="kw">use</span> <span class="ident">tree_sitter</span>;
 
+<span class="doccomment">/// Owns tree-sitter instances for supported WebAssembly text formats.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Parser</span> {
     <span class="kw">pub</span> <span class="ident">wast</span>: <span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">tree_sitter</span>::<span class="ident">Parser</span><span class="op">&gt;</span>,
     <span class="kw">pub</span> <span class="ident">wat</span>: <span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">tree_sitter</span>::<span class="ident">Parser</span><span class="op">&gt;</span>,

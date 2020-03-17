@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Elaborator","Writes elaborated syntax and metadata to [Database]."]]});

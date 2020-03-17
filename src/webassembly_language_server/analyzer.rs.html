@@ -12,19 +12,21 @@
 <span id="12">12</span>
 <span id="13">13</span>
 <span id="14">14</span>
+<span id="15">15</span>
 </pre><div class="example-wrap"><pre class="rust ">
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">database</span>::<span class="ident">Database</span>, <span class="ident">parser</span>::<span class="ident">Parser</span>};
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">database</span>::<span class="ident">Database</span>, <span class="ident">synchronizer</span>::<span class="ident">Synchronizer</span>};
 <span class="kw">use</span> <span class="ident">failure</span>::<span class="ident">Fallible</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">sync</span>::<span class="ident">Arc</span>;
 
+<span class="doccomment">/// Computes queries from elaborated syntax and metadata in [Database].</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Analyzer</span> {
     <span class="ident">database</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Database</span><span class="op">&gt;</span>,
-    <span class="ident">parser</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Parser</span><span class="op">&gt;</span>,
+    <span class="ident">synchronizer</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Synchronizer</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Analyzer</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">database</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Database</span><span class="op">&gt;</span>, <span class="ident">parser</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Parser</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Fallible</span><span class="op">&lt;</span><span class="ident">Analyzer</span><span class="op">&gt;</span> {
-        <span class="prelude-val">Ok</span>(<span class="ident">Analyzer</span> { <span class="ident">database</span>, <span class="ident">parser</span> })
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">database</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Database</span><span class="op">&gt;</span>, <span class="ident">synchronizer</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Synchronizer</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Fallible</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+        <span class="prelude-val">Ok</span>(<span class="ident">Analyzer</span> { <span class="ident">database</span>, <span class="ident">synchronizer</span> })
     }
 }
 </pre></div>

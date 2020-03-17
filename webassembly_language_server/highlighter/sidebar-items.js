@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Highlighter","Computes highlights from elaborated syntax and metadata in [Database]."]]});

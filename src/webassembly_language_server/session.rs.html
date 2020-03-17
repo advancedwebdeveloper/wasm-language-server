@@ -20,26 +20,60 @@
 <span id="20">20</span>
 <span id="21">21</span>
 <span id="22">22</span>
+<span id="23">23</span>
+<span id="24">24</span>
+<span id="25">25</span>
+<span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
+<span id="29">29</span>
+<span id="30">30</span>
+<span id="31">31</span>
+<span id="32">32</span>
+<span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
+<span id="38">38</span>
+<span id="39">39</span>
 </pre><div class="example-wrap"><pre class="rust ">
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">analyzer</span>::<span class="ident">Analyzer</span>, <span class="ident">database</span>::<span class="ident">Database</span>, <span class="ident">parser</span>::<span class="ident">Parser</span>};
+<span class="kw">use</span> <span class="kw">crate</span>::{
+    <span class="ident">analyzer</span>::<span class="ident">Analyzer</span>,
+    <span class="ident">database</span>::<span class="ident">Database</span>,
+    <span class="ident">elaborator</span>::<span class="ident">Elaborator</span>,
+    <span class="ident">highlighter</span>::<span class="ident">Highlighter</span>,
+    <span class="ident">parser</span>::<span class="ident">Parser</span>,
+    <span class="ident">synchronizer</span>::<span class="ident">Synchronizer</span>,
+};
 <span class="kw">use</span> <span class="ident">failure</span>::<span class="ident">Fallible</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">sync</span>::<span class="ident">Arc</span>;
 
+<span class="doccomment">/// Represents the current state of the LSP service.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Session</span> {
     <span class="ident">analyzer</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Analyzer</span><span class="op">&gt;</span>,
     <span class="ident">database</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Database</span><span class="op">&gt;</span>,
+    <span class="ident">elaborator</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Elaborator</span><span class="op">&gt;</span>,
+    <span class="ident">highlighter</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Highlighter</span><span class="op">&gt;</span>,
     <span class="ident">parser</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Parser</span><span class="op">&gt;</span>,
+    <span class="ident">synchronizer</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Synchronizer</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Session</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Fallible</span><span class="op">&lt;</span><span class="ident">Session</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Fallible</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">database</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">new</span>(<span class="ident">Database</span>::<span class="ident">new</span>()<span class="question-mark">?</span>);
         <span class="kw">let</span> <span class="ident">parser</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">new</span>(<span class="ident">Parser</span>::<span class="ident">new</span>()<span class="question-mark">?</span>);
-        <span class="kw">let</span> <span class="ident">analyzer</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">new</span>(<span class="ident">Analyzer</span>::<span class="ident">new</span>(<span class="ident">database</span>.<span class="ident">clone</span>(), <span class="ident">parser</span>.<span class="ident">clone</span>())<span class="question-mark">?</span>);
+        <span class="kw">let</span> <span class="ident">elaborator</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">new</span>(<span class="ident">Elaborator</span>::<span class="ident">new</span>(<span class="ident">database</span>.<span class="ident">clone</span>())<span class="question-mark">?</span>);
+        <span class="kw">let</span> <span class="ident">synchronizer</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">new</span>(<span class="ident">Synchronizer</span>::<span class="ident">new</span>(<span class="ident">elaborator</span>.<span class="ident">clone</span>(), <span class="ident">parser</span>.<span class="ident">clone</span>())<span class="question-mark">?</span>);
+        <span class="kw">let</span> <span class="ident">analyzer</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">new</span>(<span class="ident">Analyzer</span>::<span class="ident">new</span>(<span class="ident">database</span>.<span class="ident">clone</span>(), <span class="ident">synchronizer</span>.<span class="ident">clone</span>())<span class="question-mark">?</span>);
+        <span class="kw">let</span> <span class="ident">highlighter</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">new</span>(<span class="ident">Highlighter</span>::<span class="ident">new</span>(<span class="ident">database</span>.<span class="ident">clone</span>(), <span class="ident">synchronizer</span>.<span class="ident">clone</span>())<span class="question-mark">?</span>);
         <span class="prelude-val">Ok</span>(<span class="ident">Session</span> {
             <span class="ident">analyzer</span>,
             <span class="ident">database</span>,
+            <span class="ident">elaborator</span>,
+            <span class="ident">highlighter</span>,
             <span class="ident">parser</span>,
+            <span class="ident">synchronizer</span>,
         })
     }
 }

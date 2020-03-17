@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["main",""],["tree_sitter_wast",""],["tree_sitter_wat",""],["tree_sitter_wit",""],["tree_sitter_witx",""]],"mod":[["analyzer",""],["database",""],["error",""],["parser",""],["server",""],["session",""]]});
+initSidebarItems({"fn":[["main",""]],"mod":[["analyzer",""],["database",""],["elaborator",""],["error",""],["highlighter",""],["parser",""],["server",""],["session",""],["synchronizer",""]]});

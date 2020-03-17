@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Synchronizer","Parses documents into trees with [Parser]. Trees are passed to [Elaborator] for further processing. Document parsing is triggered by file watcher events or by document modification events."]]});
