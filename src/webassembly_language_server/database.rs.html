@@ -38,7 +38,7 @@
 <span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">env</span>, <span class="ident">path</span>::<span class="ident">Path</span>};
 <span class="kw">use</span> <span class="ident">uuid</span>::<span class="ident">Uuid</span>;
 
-<span class="doccomment">/// Caches elaborated syntax and metadata about WebAssembly files.</span>
+<span class="doccomment">/// Caches elaborated syntax and metadata about WebAssembly documents.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Database</span> {
     <span class="ident">sled</span>: <span class="ident">sled</span>::<span class="ident">Db</span>,
     <span class="ident">uuid</span>: <span class="ident">Uuid</span>,

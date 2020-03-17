@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Elaborator","Writes elaborated syntax and metadata to [Database]."]]});
+initSidebarItems({"struct":[["Elaborator","Elaborates a given [`Tree`] into structured data to be cached in `Database`."]]});

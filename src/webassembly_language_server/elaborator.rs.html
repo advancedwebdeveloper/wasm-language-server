@@ -11,20 +11,18 @@
 <span id="11">11</span>
 <span id="12">12</span>
 <span id="13">13</span>
-<span id="14">14</span>
 </pre><div class="example-wrap"><pre class="rust ">
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">database</span>::<span class="ident">Database</span>;
 <span class="kw">use</span> <span class="ident">failure</span>::<span class="ident">Fallible</span>;
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">sync</span>::<span class="ident">Arc</span>;
 
-<span class="doccomment">/// Writes elaborated syntax and metadata to [Database].</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Elaborator</span> {
-    <span class="ident">database</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Database</span><span class="op">&gt;</span>,
-}
+<span class="doccomment">/// Elaborates a given [`Tree`] into structured data to be cached in</span>
+<span class="doccomment">/// [`Database`](crate::database::Database).</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// [`Tree`]: https://docs.rs/tree-sitter/latest/tree_sitter/struct.Tree.html</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Elaborator</span>;
 
 <span class="kw">impl</span> <span class="ident">Elaborator</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">database</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Database</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Fallible</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="prelude-val">Ok</span>(<span class="ident">Elaborator</span> { <span class="ident">database</span> })
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Fallible</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+        <span class="prelude-val">Ok</span>(<span class="ident">Elaborator</span>)
     }
 }
 </pre></div>

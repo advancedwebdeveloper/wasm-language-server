@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Parser","Owns tree-sitter instances for supported WebAssembly text formats."]]});
+initSidebarItems({"struct":[["Parser","Owns tree-sitter [`Parser`] instances for supported WebAssembly documents."]]});
