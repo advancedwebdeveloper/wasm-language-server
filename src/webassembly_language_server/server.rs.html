@@ -73,6 +73,7 @@
 <span id="73">73</span>
 <span id="74">74</span>
 <span id="75">75</span>
+<span id="76">76</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">session</span>::<span class="ident">Session</span>;
 <span class="kw">use</span> <span class="ident">jsonrpc_core</span>::<span class="prelude-ty">Result</span>;
@@ -84,7 +85,8 @@
     <span class="kw">fn</span> <span class="ident">initialize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">Client</span>, <span class="ident">params</span>: <span class="ident">InitializeParams</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">InitializeResult</span><span class="op">&gt;</span> {
         <span class="ident">log</span>::<span class="macro">info</span><span class="macro">!</span>(<span class="string">&quot;{:?}&quot;</span>, <span class="ident">params</span>);
         <span class="comment">// let document_symbol_provider = Some(false);</span>
-        <span class="comment">// let semantic_tokens_provider = Some(SemanticTokensServerCapabilities::SemanticTokensRegistrationOptions(</span>
+        <span class="comment">// let semantic_tokens_provider =</span>
+        <span class="comment">// Some(SemanticTokensServerCapabilities::SemanticTokensRegistrationOptions(</span>
         <span class="comment">//     SemanticTokensRegistrationOptions {</span>
         <span class="comment">//         semantic_tokens_options: SemanticTokensOptions {</span>
         <span class="comment">//             document_provider: Some(SemanticTokensDocumentProvider::Bool(false)),</span>
