@@ -56,7 +56,7 @@
     <span class="ident">elaborator</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Elaborator</span><span class="op">&gt;</span>,
     <span class="ident">highlighter</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Highlighter</span><span class="op">&gt;</span>,
     <span class="ident">parser</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Parser</span><span class="op">&gt;</span>,
-    <span class="ident">synchronizer</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Synchronizer</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">synchronizer</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Synchronizer</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Session</span> {
