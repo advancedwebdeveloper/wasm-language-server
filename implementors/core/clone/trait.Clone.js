@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["webassembly_language_server"] = [{"text":"impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html\" title=\"trait core::clone::Clone\">Clone</a> for <a class=\"enum\" href=\"webassembly_language_server/message/enum.Message.html\" title=\"enum webassembly_language_server::message::Message\">Message</a>","synthetic":false,"types":["webassembly_language_server::message::Message"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
