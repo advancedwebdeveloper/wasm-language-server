@@ -12,19 +12,107 @@
 <span id="12">12</span>
 <span id="13">13</span>
 <span id="14">14</span>
+<span id="15">15</span>
+<span id="16">16</span>
+<span id="17">17</span>
+<span id="18">18</span>
+<span id="19">19</span>
+<span id="20">20</span>
+<span id="21">21</span>
+<span id="22">22</span>
+<span id="23">23</span>
+<span id="24">24</span>
+<span id="25">25</span>
+<span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
+<span id="29">29</span>
+<span id="30">30</span>
+<span id="31">31</span>
+<span id="32">32</span>
+<span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
+<span id="38">38</span>
+<span id="39">39</span>
+<span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
+<span id="53">53</span>
+<span id="54">54</span>
+<span id="55">55</span>
+<span id="56">56</span>
+<span id="57">57</span>
+<span id="58">58</span>
 </pre><div class="example-wrap"><pre class="rust ">
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">synchronizer</span>::<span class="ident">Synchronizer</span>;
+<span class="kw">use</span> <span class="kw">crate</span>::{
+    <span class="ident">analyzer</span>::<span class="ident">Analyzer</span>,
+    <span class="ident">auditor</span>::<span class="ident">Auditor</span>,
+    <span class="ident">database</span>::<span class="ident">Database</span>,
+    <span class="ident">elaborator</span>::<span class="ident">Elaborator</span>,
+    <span class="ident">highlighter</span>::<span class="ident">Highlighter</span>,
+    <span class="ident">synchronizer</span>::<span class="ident">Synchronizer</span>,
+    <span class="ident">synthesizer</span>::<span class="ident">Synthesizer</span>,
+};
 <span class="kw">use</span> <span class="ident">failure</span>::<span class="ident">Fallible</span>;
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">sync</span>::<span class="ident">Arc</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">sync</span>::{<span class="ident">Arc</span>, <span class="ident">Weak</span>};
+<span class="kw">use</span> <span class="ident">tokio</span>::<span class="ident">sync</span>::<span class="ident">RwLock</span>;
+
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SessionHandle</span>(<span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">RwLock</span><span class="op">&lt;</span><span class="ident">Weak</span><span class="op">&lt;</span><span class="ident">Session</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>);
+
+<span class="kw">impl</span> <span class="ident">SessionHandle</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">session</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">RwLock</span><span class="op">&lt;</span><span class="ident">Weak</span><span class="op">&lt;</span><span class="ident">Session</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="ident">SessionHandle</span>(<span class="ident">session</span>)
+    }
+
+    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Session</span><span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="number">0</span>.<span class="ident">read</span>().<span class="kw">await</span>.<span class="ident">upgrade</span>().<span class="ident">expect</span>(<span class="string">&quot;session not initialized&quot;</span>)
+    }
+}
 
 <span class="doccomment">/// Represents the current state of the LSP service.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Session</span> {
+    <span class="kw">pub</span> <span class="ident">analyzer</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Analyzer</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">auditor</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Auditor</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">database</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Database</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">elaborator</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Elaborator</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">highlighter</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Highlighter</span><span class="op">&gt;</span>,
     <span class="kw">pub</span> <span class="ident">synchronizer</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Synchronizer</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">synthesizer</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Synthesizer</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Session</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">synchronizer</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Synchronizer</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Fallible</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="prelude-val">Ok</span>(<span class="ident">Session</span> { <span class="ident">synchronizer</span> })
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
+        <span class="ident">analyzer</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Analyzer</span><span class="op">&gt;</span>,
+        <span class="ident">auditor</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Auditor</span><span class="op">&gt;</span>,
+        <span class="ident">database</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Database</span><span class="op">&gt;</span>,
+        <span class="ident">elaborator</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Elaborator</span><span class="op">&gt;</span>,
+        <span class="ident">highlighter</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Highlighter</span><span class="op">&gt;</span>,
+        <span class="ident">synchronizer</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Synchronizer</span><span class="op">&gt;</span>,
+        <span class="ident">synthesizer</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Synthesizer</span><span class="op">&gt;</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Fallible</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+        <span class="prelude-val">Ok</span>(<span class="ident">Session</span> {
+            <span class="ident">analyzer</span>,
+            <span class="ident">auditor</span>,
+            <span class="ident">database</span>,
+            <span class="ident">elaborator</span>,
+            <span class="ident">highlighter</span>,
+            <span class="ident">synchronizer</span>,
+            <span class="ident">synthesizer</span>,
+        })
     }
 }
 </pre></div>
