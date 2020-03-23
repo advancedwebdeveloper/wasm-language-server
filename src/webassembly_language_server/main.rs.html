@@ -73,6 +73,9 @@
 <span id="73">73</span>
 <span id="74">74</span>
 <span id="75">75</span>
+<span id="76">76</span>
+<span id="77">77</span>
+<span id="78">78</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">dead_code</span>)]</span>
 
@@ -136,14 +139,17 @@
     <span class="kw">let</span> (<span class="ident">service</span>, <span class="ident">messages</span>) <span class="op">=</span> <span class="ident">LspService</span>::<span class="ident">new</span>(<span class="ident">session</span>);
     <span class="kw">let</span> <span class="ident">stdin</span> <span class="op">=</span> <span class="ident">tokio</span>::<span class="ident">io</span>::<span class="ident">stdin</span>();
     <span class="kw">let</span> <span class="ident">stdout</span> <span class="op">=</span> <span class="ident">tokio</span>::<span class="ident">io</span>::<span class="ident">stdout</span>();
-    <span class="kw">let</span> <span class="ident">server</span> <span class="op">=</span> <span class="ident">Server</span>::<span class="ident">new</span>(<span class="ident">stdin</span>, <span class="ident">stdout</span>).<span class="ident">interleave</span>(<span class="ident">messages</span>).<span class="ident">serve</span>(<span class="ident">service</span>);
+    <span class="kw">let</span> <span class="ident">server</span> <span class="op">=</span> <span class="kw">async</span> {
+        <span class="ident">Server</span>::<span class="ident">new</span>(<span class="ident">stdin</span>, <span class="ident">stdout</span>).<span class="ident">interleave</span>(<span class="ident">messages</span>).<span class="ident">serve</span>(<span class="ident">service</span>).<span class="kw">await</span>;
+        <span class="prelude-val">Ok</span>(())
+    };
 
     <span class="ident">join_all</span>(<span class="macro">vec</span><span class="macro">!</span>[
         <span class="ident">tokio</span>::<span class="ident">spawn</span>(<span class="kw">async</span> <span class="kw">move</span> { <span class="ident">analyzer</span>.<span class="ident">init</span>().<span class="kw">await</span> }),
         <span class="ident">tokio</span>::<span class="ident">spawn</span>(<span class="kw">async</span> <span class="kw">move</span> { <span class="ident">auditor</span>.<span class="ident">init</span>().<span class="kw">await</span> }),
         <span class="ident">tokio</span>::<span class="ident">spawn</span>(<span class="kw">async</span> <span class="kw">move</span> { <span class="ident">elaborator</span>.<span class="ident">init</span>().<span class="kw">await</span> }),
         <span class="ident">tokio</span>::<span class="ident">spawn</span>(<span class="kw">async</span> <span class="kw">move</span> { <span class="ident">highlighter</span>.<span class="ident">init</span>().<span class="kw">await</span> }),
-        <span class="ident">tokio</span>::<span class="ident">spawn</span>(<span class="kw">async</span> <span class="kw">move</span> { <span class="ident">server</span>.<span class="kw">await</span> }),
+        <span class="ident">tokio</span>::<span class="ident">spawn</span>(<span class="ident">server</span>),
     ])
     .<span class="kw">await</span>;
 
