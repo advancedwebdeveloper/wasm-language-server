@@ -76,6 +76,10 @@
 <span id="76">76</span>
 <span id="77">77</span>
 <span id="78">78</span>
+<span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
+<span id="82">82</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">dead_code</span>)]</span>
 
@@ -126,14 +130,18 @@
     <span class="ident">env_logger</span>::<span class="ident">try_init</span>()<span class="question-mark">?</span>;
 
     <span class="kw">let</span> <span class="ident">synchronizer</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">new</span>(<span class="ident">Synchronizer</span>::<span class="ident">new</span>(<span class="ident">Arc</span>::<span class="ident">new</span>(<span class="ident">Parser</span>::<span class="ident">new</span>()<span class="question-mark">?</span>))<span class="question-mark">?</span>);
-    <span class="kw">let</span> <span class="ident">rx</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">synchronizer</span>.<span class="ident">rx</span>;
+    <span class="kw">let</span> <span class="ident">receiver</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">synchronizer</span>.<span class="ident">receiver</span>;
 
-    <span class="kw">let</span> <span class="ident">auditor</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">new</span>(<span class="ident">Auditor</span>::<span class="ident">new</span>(<span class="ident">rx</span>.<span class="ident">clone</span>(), <span class="ident">synchronizer</span>.<span class="ident">clone</span>())<span class="question-mark">?</span>);
-    <span class="kw">let</span> <span class="ident">highlighter</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">new</span>(<span class="ident">Highlighter</span>::<span class="ident">new</span>(<span class="ident">rx</span>.<span class="ident">clone</span>(), <span class="ident">synchronizer</span>.<span class="ident">clone</span>())<span class="question-mark">?</span>);
+    <span class="kw">let</span> <span class="ident">auditor</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">new</span>(<span class="ident">Auditor</span>::<span class="ident">new</span>(<span class="ident">receiver</span>.<span class="ident">clone</span>(), <span class="ident">synchronizer</span>.<span class="ident">clone</span>())<span class="question-mark">?</span>);
+    <span class="kw">let</span> <span class="ident">highlighter</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">new</span>(<span class="ident">Highlighter</span>::<span class="ident">new</span>(<span class="ident">receiver</span>.<span class="ident">clone</span>(), <span class="ident">synchronizer</span>.<span class="ident">clone</span>())<span class="question-mark">?</span>);
 
     <span class="kw">let</span> <span class="ident">database</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">new</span>(<span class="ident">Database</span>::<span class="ident">new</span>()<span class="question-mark">?</span>);
-    <span class="kw">let</span> <span class="ident">analyzer</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">new</span>(<span class="ident">Analyzer</span>::<span class="ident">new</span>(<span class="ident">database</span>.<span class="ident">clone</span>(), <span class="ident">rx</span>.<span class="ident">clone</span>(), <span class="ident">synchronizer</span>.<span class="ident">clone</span>())<span class="question-mark">?</span>);
-    <span class="kw">let</span> <span class="ident">elaborator</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">new</span>(<span class="ident">Elaborator</span>::<span class="ident">new</span>(<span class="ident">database</span>.<span class="ident">clone</span>(), <span class="ident">rx</span>.<span class="ident">clone</span>(), <span class="ident">synchronizer</span>.<span class="ident">clone</span>())<span class="question-mark">?</span>);
+    <span class="kw">let</span> <span class="ident">analyzer</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">new</span>(<span class="ident">Analyzer</span>::<span class="ident">new</span>(<span class="ident">database</span>.<span class="ident">clone</span>(), <span class="ident">receiver</span>.<span class="ident">clone</span>(), <span class="ident">synchronizer</span>.<span class="ident">clone</span>())<span class="question-mark">?</span>);
+    <span class="kw">let</span> <span class="ident">elaborator</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">new</span>(<span class="ident">Elaborator</span>::<span class="ident">new</span>(
+        <span class="ident">database</span>.<span class="ident">clone</span>(),
+        <span class="ident">receiver</span>.<span class="ident">clone</span>(),
+        <span class="ident">synchronizer</span>.<span class="ident">clone</span>(),
+    )<span class="question-mark">?</span>);
 
     <span class="kw">let</span> <span class="ident">session</span> <span class="op">=</span> <span class="ident">Session</span>::<span class="ident">new</span>(<span class="ident">synchronizer</span>.<span class="ident">clone</span>())<span class="question-mark">?</span>;
     <span class="kw">let</span> (<span class="ident">service</span>, <span class="ident">messages</span>) <span class="op">=</span> <span class="ident">LspService</span>::<span class="ident">new</span>(<span class="ident">session</span>);
