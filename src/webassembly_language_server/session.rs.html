@@ -85,24 +85,24 @@
 
 <span class="doccomment">/// Represents the current state of the LSP service.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Session</span> {
-    <span class="kw">pub</span> <span class="ident">analyzer</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Analyzer</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">auditor</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Auditor</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">database</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Database</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">elaborator</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Elaborator</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">highlighter</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Highlighter</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">synchronizer</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Synchronizer</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">synthesizer</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Synthesizer</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">analyzer</span>: <span class="ident">Analyzer</span>,
+    <span class="kw">pub</span> <span class="ident">auditor</span>: <span class="ident">Auditor</span>,
+    <span class="kw">pub</span> <span class="ident">database</span>: <span class="ident">Database</span>,
+    <span class="kw">pub</span> <span class="ident">elaborator</span>: <span class="ident">Elaborator</span>,
+    <span class="kw">pub</span> <span class="ident">highlighter</span>: <span class="ident">Highlighter</span>,
+    <span class="kw">pub</span> <span class="ident">synchronizer</span>: <span class="ident">Synchronizer</span>,
+    <span class="kw">pub</span> <span class="ident">synthesizer</span>: <span class="ident">Synthesizer</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Session</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
-        <span class="ident">analyzer</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Analyzer</span><span class="op">&gt;</span>,
-        <span class="ident">auditor</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Auditor</span><span class="op">&gt;</span>,
-        <span class="ident">database</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Database</span><span class="op">&gt;</span>,
-        <span class="ident">elaborator</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Elaborator</span><span class="op">&gt;</span>,
-        <span class="ident">highlighter</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Highlighter</span><span class="op">&gt;</span>,
-        <span class="ident">synchronizer</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Synchronizer</span><span class="op">&gt;</span>,
-        <span class="ident">synthesizer</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Synthesizer</span><span class="op">&gt;</span>,
+        <span class="ident">analyzer</span>: <span class="ident">Analyzer</span>,
+        <span class="ident">auditor</span>: <span class="ident">Auditor</span>,
+        <span class="ident">database</span>: <span class="ident">Database</span>,
+        <span class="ident">elaborator</span>: <span class="ident">Elaborator</span>,
+        <span class="ident">highlighter</span>: <span class="ident">Highlighter</span>,
+        <span class="ident">synchronizer</span>: <span class="ident">Synchronizer</span>,
+        <span class="ident">synthesizer</span>: <span class="ident">Synthesizer</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Fallible</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="prelude-val">Ok</span>(<span class="ident">Session</span> {
             <span class="ident">analyzer</span>,
