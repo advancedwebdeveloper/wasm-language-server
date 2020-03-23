@@ -68,9 +68,6 @@
 <span id="68">68</span>
 <span id="69">69</span>
 <span id="70">70</span>
-<span id="71">71</span>
-<span id="72">72</span>
-<span id="73">73</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">database</span>::<span class="ident">Database</span>, <span class="ident">message</span>::<span class="ident">Message</span>, <span class="ident">synchronizer</span>::<span class="ident">Synchronizer</span>};
 <span class="kw">use</span> <span class="ident">failure</span>::<span class="ident">Fallible</span>;
@@ -79,10 +76,7 @@
 <span class="kw">use</span> <span class="ident">tokio</span>::<span class="ident">sync</span>::<span class="ident">watch</span>::<span class="ident">Receiver</span>;
 <span class="kw">use</span> <span class="ident">tower_lsp</span>::<span class="ident">Client</span>;
 
-<span class="doccomment">/// Elaborates a given [`Tree`] into structured data to be cached in</span>
-<span class="doccomment">/// [`Database`](crate::database::Database).</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// [`Tree`]: https://docs.rs/tree-sitter/latest/tree_sitter/struct.Tree.html</span>
+<span class="doccomment">/// Elaborates parse trees into structured data to be cached in the database.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Elaborator</span> {
     <span class="ident">database</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Database</span><span class="op">&gt;</span>,
     <span class="ident">receiver</span>: <span class="ident">Receiver</span><span class="op">&lt;</span><span class="ident">Message</span><span class="op">&gt;</span>,

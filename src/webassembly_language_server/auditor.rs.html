@@ -56,6 +56,7 @@
 <span id="56">56</span>
 <span id="57">57</span>
 <span id="58">58</span>
+<span id="59">59</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">message</span>::<span class="ident">Message</span>, <span class="ident">synchronizer</span>::<span class="ident">Synchronizer</span>};
 <span class="kw">use</span> <span class="ident">failure</span>::<span class="ident">Fallible</span>;
@@ -64,6 +65,7 @@
 <span class="kw">use</span> <span class="ident">tokio</span>::<span class="ident">sync</span>::<span class="ident">watch</span>::<span class="ident">Receiver</span>;
 <span class="kw">use</span> <span class="ident">tower_lsp</span>::<span class="ident">Client</span>;
 
+<span class="doccomment">/// Collects diagnostics for documents with syntax errors, etc.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Auditor</span> {
     <span class="ident">receiver</span>: <span class="ident">Receiver</span><span class="op">&lt;</span><span class="ident">Message</span><span class="op">&gt;</span>,
     <span class="ident">synchronizer</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Synchronizer</span><span class="op">&gt;</span>,

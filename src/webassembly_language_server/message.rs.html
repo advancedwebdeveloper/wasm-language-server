@@ -8,10 +8,12 @@
 <span id="8"> 8</span>
 <span id="9"> 9</span>
 <span id="10">10</span>
+<span id="11">11</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">lsp_types</span>::<span class="ident">Url</span>;
 <span class="kw">use</span> <span class="ident">tower_lsp</span>::<span class="ident">Client</span>;
 
+<span class="doccomment">/// Messages for synchronizing server component activity.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Message</span> {
     <span class="ident">TreeDidChange</span> { <span class="ident">client</span>: <span class="ident">Client</span>, <span class="ident">uri</span>: <span class="ident">Url</span> },

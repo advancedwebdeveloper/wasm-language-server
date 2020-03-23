@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Synchronizer","Parses a given document into a [`Tree`] with [`Parser`]. Then [`Elaborator`] processes the resulting tree into structured data which is finally cached in [`Database`]. The parsed tree is also stored in hashmap to allow for incremental edits and re-parsing. Document parsing is triggered by file watcher events or by document modification events."]]});
+initSidebarItems({"struct":[["Synchronizer","Synchronizes document edits and parse trees and notifies other server components of changes."]]});

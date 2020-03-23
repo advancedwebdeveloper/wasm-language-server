@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Auditor",""]]});
+initSidebarItems({"struct":[["Auditor","Collects diagnostics for documents with syntax errors, etc."]]});

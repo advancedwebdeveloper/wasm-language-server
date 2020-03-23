@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Database","Caches elaborated syntax and metadata about WebAssembly documents."]]});
+initSidebarItems({"struct":[["Database","Caches elaborated syntax and metadata of documents."]]});

@@ -25,7 +25,6 @@
 <span id="25">25</span>
 <span id="26">26</span>
 <span id="27">27</span>
-<span id="28">28</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">message</span>::<span class="ident">Message</span>, <span class="ident">synchronizer</span>::<span class="ident">Synchronizer</span>};
 <span class="kw">use</span> <span class="ident">failure</span>::<span class="ident">Fallible</span>;
@@ -35,8 +34,7 @@
 
 <span class="comment">// TODO: implement highlight adapter from tree-sitter to LSP SemanticTokenType</span>
 
-<span class="doccomment">/// Computes highlights from elaborated syntax and metadata in</span>
-<span class="doccomment">/// [`Database`](crate::database::Database).</span>
+<span class="doccomment">/// Computes highlights for documents.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Highlighter</span> {
     <span class="ident">receiver</span>: <span class="ident">Receiver</span><span class="op">&lt;</span><span class="ident">Message</span><span class="op">&gt;</span>,
     <span class="ident">synchronizer</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Synchronizer</span><span class="op">&gt;</span>,

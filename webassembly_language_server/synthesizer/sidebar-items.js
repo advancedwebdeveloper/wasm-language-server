@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Synthesizer","Synthesizes typing information for documents."]]});
