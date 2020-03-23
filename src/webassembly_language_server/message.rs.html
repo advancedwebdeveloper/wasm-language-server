@@ -16,10 +16,10 @@
 <span class="doccomment">/// Messages for synchronizing server component activity.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Message</span> {
+    <span class="ident">Start</span>,
     <span class="ident">TreeDidChange</span> { <span class="ident">client</span>: <span class="ident">Client</span>, <span class="ident">uri</span>: <span class="ident">Url</span> },
     <span class="ident">TreeDidClose</span> { <span class="ident">client</span>: <span class="ident">Client</span>, <span class="ident">uri</span>: <span class="ident">Url</span> },
     <span class="ident">TreeDidOpen</span> { <span class="ident">client</span>: <span class="ident">Client</span>, <span class="ident">uri</span>: <span class="ident">Url</span> },
-    <span class="ident">Start</span>,
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../";window.currentCrate = "webassembly_language_server";</script><script src="../../aliases.js"></script><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>
