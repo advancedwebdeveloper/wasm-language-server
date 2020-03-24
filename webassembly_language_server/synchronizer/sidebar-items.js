@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Synchronizer","Synchronizes document edits and parse trees and notifies other server components of changes."]]});
+initSidebarItems({"struct":[["Document",""],["Synchronizer","Synchronizes document edits and parse trees and notifies other server components of changes."]]});
