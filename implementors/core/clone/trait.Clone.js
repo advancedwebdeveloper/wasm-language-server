@@ -1,3 +1,0 @@
-(function() {var implementors = {};
-implementors["webassembly_language_server"] = [{"text":"impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html\" title=\"trait core::clone::Clone\">Clone</a> for <a class=\"struct\" href=\"webassembly_language_server/session/struct.SessionHandle.html\" title=\"struct webassembly_language_server::session::SessionHandle\">SessionHandle</a>","synthetic":false,"types":["webassembly_language_server::session::SessionHandle"]}];
-if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

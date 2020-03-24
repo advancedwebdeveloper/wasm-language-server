@@ -29,79 +29,37 @@
 <span id="29">29</span>
 <span id="30">30</span>
 <span id="31">31</span>
-<span id="32">32</span>
-<span id="33">33</span>
-<span id="34">34</span>
-<span id="35">35</span>
-<span id="36">36</span>
-<span id="37">37</span>
-<span id="38">38</span>
-<span id="39">39</span>
-<span id="40">40</span>
-<span id="41">41</span>
-<span id="42">42</span>
-<span id="43">43</span>
-<span id="44">44</span>
-<span id="45">45</span>
-<span id="46">46</span>
-<span id="47">47</span>
-<span id="48">48</span>
-<span id="49">49</span>
-<span id="50">50</span>
-<span id="51">51</span>
-<span id="52">52</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">error</span>::<span class="ident">Error</span>;
 <span class="kw">use</span> <span class="ident">failure</span>::<span class="ident">Fallible</span>;
-<span class="kw">use</span> <span class="ident">tokio</span>::<span class="ident">sync</span>::<span class="ident">Mutex</span>;
 <span class="kw">use</span> <span class="ident">tree_sitter</span>;
 
-<span class="doccomment">/// Owns tree-sitter [`Parser`] instances for supported WebAssembly documents.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// [`Parser`]: https://docs.rs/tree-sitter/latest/tree_sitter/struct.Parser.html</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Parser</span> {
-    <span class="kw">pub</span> <span class="ident">wast</span>: <span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">tree_sitter</span>::<span class="ident">Parser</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">wat</span>: <span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">tree_sitter</span>::<span class="ident">Parser</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">wit</span>: <span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">tree_sitter</span>::<span class="ident">Parser</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">witx</span>: <span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">tree_sitter</span>::<span class="ident">Parser</span><span class="op">&gt;</span>,
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wast</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Fallible</span><span class="op">&lt;</span><span class="ident">tree_sitter</span>::<span class="ident">Parser</span><span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="ident">language</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="kw">crate</span>::<span class="ident">tree_sitter_wast</span>() };
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">parser</span> <span class="op">=</span> <span class="ident">tree_sitter</span>::<span class="ident">Parser</span>::<span class="ident">new</span>();
+    <span class="ident">parser</span>.<span class="ident">set_language</span>(<span class="ident">language</span>).<span class="ident">map_err</span>(<span class="ident">Error</span>::<span class="ident">LanguageError</span>)<span class="question-mark">?</span>;
+    <span class="prelude-val">Ok</span>(<span class="ident">parser</span>)
 }
 
-<span class="kw">impl</span> <span class="ident">Parser</span> {
-    <span class="kw">fn</span> <span class="ident">wast</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Fallible</span><span class="op">&lt;</span><span class="ident">tree_sitter</span>::<span class="ident">Parser</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">language</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="kw">crate</span>::<span class="ident">tree_sitter_wast</span>() };
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">parser</span> <span class="op">=</span> <span class="ident">tree_sitter</span>::<span class="ident">Parser</span>::<span class="ident">new</span>();
-        <span class="ident">parser</span>.<span class="ident">set_language</span>(<span class="ident">language</span>).<span class="ident">map_err</span>(<span class="ident">Error</span>::<span class="ident">LanguageError</span>)<span class="question-mark">?</span>;
-        <span class="prelude-val">Ok</span>(<span class="ident">parser</span>)
-    }
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wat</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Fallible</span><span class="op">&lt;</span><span class="ident">tree_sitter</span>::<span class="ident">Parser</span><span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="ident">language</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="kw">crate</span>::<span class="ident">tree_sitter_wat</span>() };
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">parser</span> <span class="op">=</span> <span class="ident">tree_sitter</span>::<span class="ident">Parser</span>::<span class="ident">new</span>();
+    <span class="ident">parser</span>.<span class="ident">set_language</span>(<span class="ident">language</span>).<span class="ident">map_err</span>(<span class="ident">Error</span>::<span class="ident">LanguageError</span>)<span class="question-mark">?</span>;
+    <span class="prelude-val">Ok</span>(<span class="ident">parser</span>)
+}
 
-    <span class="kw">fn</span> <span class="ident">wat</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Fallible</span><span class="op">&lt;</span><span class="ident">tree_sitter</span>::<span class="ident">Parser</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">language</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="kw">crate</span>::<span class="ident">tree_sitter_wat</span>() };
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">parser</span> <span class="op">=</span> <span class="ident">tree_sitter</span>::<span class="ident">Parser</span>::<span class="ident">new</span>();
-        <span class="ident">parser</span>.<span class="ident">set_language</span>(<span class="ident">language</span>).<span class="ident">map_err</span>(<span class="ident">Error</span>::<span class="ident">LanguageError</span>)<span class="question-mark">?</span>;
-        <span class="prelude-val">Ok</span>(<span class="ident">parser</span>)
-    }
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wit</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Fallible</span><span class="op">&lt;</span><span class="ident">tree_sitter</span>::<span class="ident">Parser</span><span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="ident">language</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="kw">crate</span>::<span class="ident">tree_sitter_wit</span>() };
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">parser</span> <span class="op">=</span> <span class="ident">tree_sitter</span>::<span class="ident">Parser</span>::<span class="ident">new</span>();
+    <span class="ident">parser</span>.<span class="ident">set_language</span>(<span class="ident">language</span>).<span class="ident">map_err</span>(<span class="ident">Error</span>::<span class="ident">LanguageError</span>)<span class="question-mark">?</span>;
+    <span class="prelude-val">Ok</span>(<span class="ident">parser</span>)
+}
 
-    <span class="kw">fn</span> <span class="ident">wit</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Fallible</span><span class="op">&lt;</span><span class="ident">tree_sitter</span>::<span class="ident">Parser</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">language</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="kw">crate</span>::<span class="ident">tree_sitter_wit</span>() };
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">parser</span> <span class="op">=</span> <span class="ident">tree_sitter</span>::<span class="ident">Parser</span>::<span class="ident">new</span>();
-        <span class="ident">parser</span>.<span class="ident">set_language</span>(<span class="ident">language</span>).<span class="ident">map_err</span>(<span class="ident">Error</span>::<span class="ident">LanguageError</span>)<span class="question-mark">?</span>;
-        <span class="prelude-val">Ok</span>(<span class="ident">parser</span>)
-    }
-
-    <span class="kw">fn</span> <span class="ident">witx</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Fallible</span><span class="op">&lt;</span><span class="ident">tree_sitter</span>::<span class="ident">Parser</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">language</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="kw">crate</span>::<span class="ident">tree_sitter_witx</span>() };
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">parser</span> <span class="op">=</span> <span class="ident">tree_sitter</span>::<span class="ident">Parser</span>::<span class="ident">new</span>();
-        <span class="ident">parser</span>.<span class="ident">set_language</span>(<span class="ident">language</span>).<span class="ident">map_err</span>(<span class="ident">Error</span>::<span class="ident">LanguageError</span>)<span class="question-mark">?</span>;
-        <span class="prelude-val">Ok</span>(<span class="ident">parser</span>)
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Fallible</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">wat</span> <span class="op">=</span> <span class="ident">Mutex</span>::<span class="ident">new</span>(<span class="self">Self</span>::<span class="ident">wat</span>()<span class="question-mark">?</span>);
-        <span class="kw">let</span> <span class="ident">wast</span> <span class="op">=</span> <span class="ident">Mutex</span>::<span class="ident">new</span>(<span class="self">Self</span>::<span class="ident">wast</span>()<span class="question-mark">?</span>);
-        <span class="kw">let</span> <span class="ident">wit</span> <span class="op">=</span> <span class="ident">Mutex</span>::<span class="ident">new</span>(<span class="self">Self</span>::<span class="ident">wit</span>()<span class="question-mark">?</span>);
-        <span class="kw">let</span> <span class="ident">witx</span> <span class="op">=</span> <span class="ident">Mutex</span>::<span class="ident">new</span>(<span class="self">Self</span>::<span class="ident">witx</span>()<span class="question-mark">?</span>);
-        <span class="prelude-val">Ok</span>(<span class="ident">Parser</span> { <span class="ident">wast</span>, <span class="ident">wat</span>, <span class="ident">wit</span>, <span class="ident">witx</span> })
-    }
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">witx</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Fallible</span><span class="op">&lt;</span><span class="ident">tree_sitter</span>::<span class="ident">Parser</span><span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="ident">language</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="kw">crate</span>::<span class="ident">tree_sitter_witx</span>() };
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">parser</span> <span class="op">=</span> <span class="ident">tree_sitter</span>::<span class="ident">Parser</span>::<span class="ident">new</span>();
+    <span class="ident">parser</span>.<span class="ident">set_language</span>(<span class="ident">language</span>).<span class="ident">map_err</span>(<span class="ident">Error</span>::<span class="ident">LanguageError</span>)<span class="question-mark">?</span>;
+    <span class="prelude-val">Ok</span>(<span class="ident">parser</span>)
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../";window.currentCrate = "webassembly_language_server";</script><script src="../../aliases.js"></script><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>

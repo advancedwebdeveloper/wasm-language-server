@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Highlighter","Computes highlights for documents."]]});
+initSidebarItems({});

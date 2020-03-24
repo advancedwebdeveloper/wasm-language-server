@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Elaborator","Elaborates parse trees into structured data to be cached in the database."]]});
+initSidebarItems({"fn":[["document_symbol",""],["tree_did_change",""],["tree_did_close",""],["tree_did_open",""]]});

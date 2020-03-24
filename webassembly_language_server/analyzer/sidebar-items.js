@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Analyzer","Computes queries about documents."]]});
+initSidebarItems({});
