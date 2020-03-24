@@ -34,15 +34,6 @@
 <span id="34">34</span>
 <span id="35">35</span>
 <span id="36">36</span>
-<span id="37">37</span>
-<span id="38">38</span>
-<span id="39">39</span>
-<span id="40">40</span>
-<span id="41">41</span>
-<span id="42">42</span>
-<span id="43">43</span>
-<span id="44">44</span>
-<span id="45">45</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">session</span>::<span class="ident">SessionHandle</span>;
 <span class="kw">use</span> <span class="ident">failure</span>::<span class="ident">Fallible</span>;
@@ -54,7 +45,7 @@
     <span class="ident">session</span>: <span class="ident">SessionHandle</span>,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Elaborator</span> {
+<span class="kw">impl</span> <span class="ident">Elaborator</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">session</span>: <span class="ident">SessionHandle</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Fallible</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="prelude-val">Ok</span>(<span class="ident">Elaborator</span> { <span class="ident">session</span> })
     }
@@ -76,17 +67,8 @@
         <span class="prelude-val">Ok</span>(())
     }
 
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">tree_did_open</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="ident">Client</span>, <span class="ident">uri</span>: <span class="kw-2">&amp;</span><span class="ident">Url</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Fallible</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">tree</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">session</span>.<span class="ident">get</span>().<span class="kw">await</span>.<span class="ident">synchronizer</span>.<span class="ident">trees</span>.<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="ident">uri</span>) {
-            <span class="kw">let</span> <span class="ident">tree</span> <span class="op">=</span> <span class="ident">tree</span>.<span class="ident">lock</span>().<span class="kw">await</span>.<span class="ident">clone</span>();
-            <span class="kw">let</span> <span class="ident">node</span> <span class="op">=</span> <span class="ident">tree</span>.<span class="ident">root_node</span>();
-            <span class="kw">if</span> <span class="op">!</span><span class="ident">node</span>.<span class="ident">has_error</span>() {
-                <span class="ident">log</span>::<span class="macro">info</span><span class="macro">!</span>(<span class="string">&quot;syntax well-formed&quot;</span>);
-            }
-            <span class="comment">// NOTE: else let auditor handle</span>
-            <span class="comment">// TODO: allow partial elaboration in presence of syntax errors</span>
-        }
-        <span class="prelude-val">Ok</span>(())
+    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">tree_did_open</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">client</span>: <span class="kw-2">&amp;</span><span class="ident">Client</span>, <span class="ident">uri</span>: <span class="kw-2">&amp;</span><span class="ident">Url</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Fallible</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">tree_did_change</span>(<span class="ident">client</span>, <span class="ident">uri</span>).<span class="kw">await</span>
     }
 }
 </pre></div>
