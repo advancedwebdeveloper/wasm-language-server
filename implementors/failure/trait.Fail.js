@@ -1,3 +1,3 @@
 (function() {var implementors = {};
-implementors["webassembly_language_server"] = [{"text":"impl Fail for <a class=\"enum\" href=\"webassembly_language_server/error/enum.Error.html\" title=\"enum webassembly_language_server::error::Error\">Error</a>","synthetic":false,"types":["webassembly_language_server::error::Error"]}];
+implementors["wasm_language_server"] = [{"text":"impl Fail for <a class=\"enum\" href=\"wasm_language_server/error/enum.Error.html\" title=\"enum wasm_language_server::error::Error\">Error</a>","synthetic":false,"types":["wasm_language_server::error::Error"]}];
 if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

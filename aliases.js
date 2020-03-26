@@ -1,2 +1,2 @@
 var ALIASES = {};
-ALIASES["webassembly_language_server"] = {};
+ALIASES["wasm_language_server"] = {};
