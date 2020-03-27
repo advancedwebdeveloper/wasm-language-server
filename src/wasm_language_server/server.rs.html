@@ -415,7 +415,7 @@
         <span class="comment">// run the auditor tasks</span>
         <span class="kw">let</span> <span class="ident">task</span> <span class="op">=</span> {
             <span class="kw">let</span> <span class="ident">documents</span> <span class="op">=</span> <span class="ident">documents</span>.<span class="ident">clone</span>();
-            <span class="kw">let</span> <span class="ident">client</span> <span class="op">=</span> <span class="ident">client</span>.<span class="ident">clone</span>();
+            <span class="kw">let</span> <span class="ident">client</span> <span class="op">=</span> <span class="ident">client</span>; <span class="comment">// FIXME</span>
             <span class="kw">let</span> <span class="ident">uri</span> <span class="op">=</span> <span class="ident">uri</span>.<span class="ident">clone</span>();
             <span class="ident">auditor</span>::<span class="ident">tree_did_change</span>(<span class="ident">documents</span>, <span class="ident">client</span>, <span class="ident">uri</span>)
         };
@@ -424,7 +424,7 @@
         <span class="comment">// run the elaborator tasks</span>
         <span class="kw">let</span> <span class="ident">task</span> <span class="op">=</span> {
             <span class="kw">let</span> <span class="ident">documents</span> <span class="op">=</span> <span class="ident">documents</span>.<span class="ident">clone</span>();
-            <span class="kw">let</span> <span class="ident">client</span> <span class="op">=</span> <span class="ident">client</span>.<span class="ident">clone</span>();
+            <span class="kw">let</span> <span class="ident">client</span> <span class="op">=</span> <span class="ident">client</span>; <span class="comment">// FIXME</span>
             <span class="kw">let</span> <span class="ident">uri</span> <span class="op">=</span> <span class="ident">uri</span>.<span class="ident">clone</span>();
             <span class="ident">elaborator</span>::<span class="ident">tree_did_change</span>(<span class="ident">documents</span>, <span class="ident">client</span>, <span class="ident">uri</span>)
         };
@@ -447,7 +447,7 @@
 
     <span class="kw">let</span> <span class="ident">task</span> <span class="op">=</span> {
         <span class="kw">let</span> <span class="ident">documents</span> <span class="op">=</span> <span class="ident">documents</span>.<span class="ident">clone</span>();
-        <span class="kw">let</span> <span class="ident">client</span> <span class="op">=</span> <span class="ident">client</span>.<span class="ident">clone</span>();
+        <span class="kw">let</span> <span class="ident">client</span> <span class="op">=</span> <span class="ident">client</span>; <span class="comment">// FIXME</span>
         <span class="kw">let</span> <span class="ident">uri</span> <span class="op">=</span> <span class="ident">uri</span>.<span class="ident">clone</span>();
         <span class="ident">auditor</span>::<span class="ident">tree_did_close</span>(<span class="ident">documents</span>, <span class="ident">client</span>, <span class="ident">uri</span>)
     };
@@ -455,7 +455,7 @@
 
     <span class="kw">let</span> <span class="ident">task</span> <span class="op">=</span> {
         <span class="kw">let</span> <span class="ident">documents</span> <span class="op">=</span> <span class="ident">documents</span>.<span class="ident">clone</span>();
-        <span class="kw">let</span> <span class="ident">client</span> <span class="op">=</span> <span class="ident">client</span>.<span class="ident">clone</span>();
+        <span class="kw">let</span> <span class="ident">client</span> <span class="op">=</span> <span class="ident">client</span>; <span class="comment">// FIXME</span>
         <span class="kw">let</span> <span class="ident">uri</span> <span class="op">=</span> <span class="ident">uri</span>.<span class="ident">clone</span>();
         <span class="ident">elaborator</span>::<span class="ident">tree_did_close</span>(<span class="ident">documents</span>, <span class="ident">client</span>, <span class="ident">uri</span>)
     };
