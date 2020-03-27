@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["main",""]],"mod":[["analyzer",""],["auditor",""],["database",""],["document",""],["elaborator",""],["error",""],["highlighter",""],["parser",""],["server",""],["synthesizer",""]]});
+initSidebarItems({"fn":[["main",""]],"mod":[["analyzer",""],["auditor",""],["cli",""],["database",""],["document",""],["elaborator",""],["error",""],["highlighter",""],["package",""],["parser",""],["server",""],["synthesizer",""]]});

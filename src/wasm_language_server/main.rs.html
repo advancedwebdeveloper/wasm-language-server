@@ -42,16 +42,22 @@
 <span id="42">42</span>
 <span id="43">43</span>
 <span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">dead_code</span>)]</span>
 
 <span class="kw">mod</span> <span class="ident">analyzer</span>;
 <span class="kw">mod</span> <span class="ident">auditor</span>;
+<span class="kw">mod</span> <span class="ident">cli</span>;
 <span class="kw">mod</span> <span class="ident">database</span>;
 <span class="kw">mod</span> <span class="ident">document</span>;
 <span class="kw">mod</span> <span class="ident">elaborator</span>;
 <span class="kw">mod</span> <span class="ident">error</span>;
 <span class="kw">mod</span> <span class="ident">highlighter</span>;
+<span class="kw">mod</span> <span class="ident">package</span>;
 <span class="kw">mod</span> <span class="ident">parser</span>;
 <span class="kw">mod</span> <span class="ident">server</span>;
 <span class="kw">mod</span> <span class="ident">synthesizer</span>;
@@ -78,6 +84,8 @@
 <span class="attribute">#[<span class="ident">tokio</span>::<span class="ident">main</span>]</span>
 <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">main</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Fallible</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
     <span class="ident">env_logger</span>::<span class="ident">try_init</span>()<span class="question-mark">?</span>;
+
+    <span class="kw">crate</span>::<span class="ident">cli</span>::<span class="ident">cli</span>();
 
     <span class="kw">let</span> <span class="ident">session</span> <span class="op">=</span> <span class="ident">Session</span>::<span class="ident">new</span>()<span class="question-mark">?</span>;
     <span class="kw">let</span> (<span class="ident">service</span>, <span class="ident">messages</span>) <span class="op">=</span> <span class="ident">LspService</span>::<span class="ident">new</span>(<span class="ident">session</span>);
