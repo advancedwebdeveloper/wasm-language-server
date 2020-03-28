@@ -1,1 +1,0 @@
-initSidebarItems({"static":[["FUNC",""],["IMPORT",""],["MODULE",""],["TYPE",""]]});

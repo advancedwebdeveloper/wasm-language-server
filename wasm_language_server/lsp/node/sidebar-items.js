@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["location",""],["range",""]],"mod":[["position",""]]});
+initSidebarItems({"fn":[["name_and_ranges",""],["range",""]],"mod":[["position",""]],"struct":[["NameAndRanges",""]]});

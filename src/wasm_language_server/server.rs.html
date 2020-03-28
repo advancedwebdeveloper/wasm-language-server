@@ -230,6 +230,7 @@
 <span id="230">230</span>
 <span id="231">231</span>
 <span id="232">232</span>
+<span id="233">233</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">auditor</span>, <span class="ident">database</span>::<span class="ident">Database</span>, <span class="ident">document</span>::<span class="ident">Document</span>, <span class="ident">elaborator</span>, <span class="ident">parser</span>, <span class="ident">server</span>};
 <span class="kw">use</span> <span class="ident">dashmap</span>::<span class="ident">DashMap</span>;
@@ -243,6 +244,7 @@
 
 <span class="doccomment">/// Represents the current state of the LSP service.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Session</span> {
+    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">dead_code</span>)]</span>
     <span class="ident">database</span>: <span class="ident">Database</span>,
     <span class="ident">documents</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">DashMap</span><span class="op">&lt;</span><span class="ident">Url</span>, <span class="ident">Document</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 }
