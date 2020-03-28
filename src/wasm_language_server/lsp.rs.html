@@ -53,10 +53,13 @@
 <span id="53">53</span>
 <span id="54">54</span>
 <span id="55">55</span>
+<span id="56">56</span>
+<span id="57">57</span>
+<span id="58">58</span>
+<span id="59">59</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">node</span> {
     <span class="kw">use</span> <span class="ident">lsp_types</span>::<span class="kw-2">*</span>;
-    <span class="kw">use</span> <span class="ident">smol_str</span>::<span class="ident">SmolStr</span>;
     <span class="kw">use</span> <span class="ident">tree_sitter</span>::<span class="ident">Node</span>;
 
     <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">position</span> {
@@ -79,13 +82,18 @@
     }
 
     <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">NameAndRanges</span> {
-        <span class="kw">pub</span> <span class="ident">name</span>: <span class="ident">SmolStr</span>,
+    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">NameAndRanges</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
+        <span class="kw">pub</span> <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
         <span class="kw">pub</span> <span class="ident">range</span>: <span class="ident">Range</span>,
         <span class="kw">pub</span> <span class="ident">selection_range</span>: <span class="ident">Range</span>,
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name_and_ranges</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="ident">source</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>], <span class="ident">node</span>: <span class="kw-2">&amp;</span><span class="ident">Node</span>, <span class="ident">outer_id</span>: <span class="ident">u16</span>, <span class="ident">inner_id</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">NameAndRanges</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name_and_ranges</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(
+        <span class="ident">source</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
+        <span class="ident">node</span>: <span class="kw-2">&amp;</span><span class="ident">Node</span>,
+        <span class="ident">outer_id</span>: <span class="ident">u16</span>,
+        <span class="ident">inner_id</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">NameAndRanges</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">name</span>;
         <span class="kw">let</span> <span class="ident">range</span> <span class="op">=</span> <span class="kw">crate</span>::<span class="ident">lsp</span>::<span class="ident">node</span>::<span class="ident">range</span>(<span class="kw-2">&amp;</span><span class="ident">node</span>);
         <span class="kw">let</span> <span class="ident">selection_range</span>;
@@ -95,10 +103,10 @@
             } <span class="kw">else</span> {
                 <span class="ident">outer_node</span>
             };
-            <span class="ident">name</span> <span class="op">=</span> <span class="ident">SmolStr</span>::<span class="ident">new</span>(<span class="ident">inner_node</span>.<span class="ident">utf8_text</span>(<span class="ident">source</span>).<span class="ident">unwrap</span>());
+            <span class="ident">name</span> <span class="op">=</span> <span class="ident">inner_node</span>.<span class="ident">utf8_text</span>(<span class="ident">source</span>).<span class="ident">unwrap</span>();
             <span class="ident">selection_range</span> <span class="op">=</span> <span class="kw">crate</span>::<span class="ident">lsp</span>::<span class="ident">node</span>::<span class="ident">range</span>(<span class="kw-2">&amp;</span><span class="ident">inner_node</span>);
         } <span class="kw">else</span> {
-            <span class="ident">name</span> <span class="op">=</span> <span class="ident">SmolStr</span>::<span class="ident">new</span>(<span class="string">&quot;&lt;anonymous&gt;&quot;</span>);
+            <span class="ident">name</span> <span class="op">=</span> <span class="string">&quot;&lt;anonymous&gt;&quot;</span>;
             <span class="ident">selection_range</span> <span class="op">=</span> <span class="ident">range</span>;
         }
 
