@@ -195,7 +195,6 @@
 <span id="195">195</span>
 <span id="196">196</span>
 <span id="197">197</span>
-<span id="198">198</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">/// Elaborates parse trees into structured data to be cached in the database.</span>
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">document</span>::<span class="ident">Document</span>;
@@ -353,10 +352,9 @@
                     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">children_count</span> <span class="op">=</span> <span class="number">0</span>;
                     <span class="kw">for</span> <span class="ident">modulefield</span> <span class="kw">in</span> <span class="ident">node</span>
                         .<span class="ident">children_by_field_id</span>(<span class="ident">field_MODULEFIELD</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">node</span>.<span class="ident">walk</span>())
-                        .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">node</span><span class="op">|</span> <span class="kw">match</span> <span class="ident">node</span>.<span class="ident">kind</span>() {
-                            <span class="string">&quot;func&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="bool-val">true</span>,
-                            <span class="string">&quot;type&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="bool-val">true</span>,
-                            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="bool-val">false</span>,
+                        .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">node</span><span class="op">|</span> {
+                            <span class="kw">let</span> <span class="ident">kind_id</span> <span class="op">=</span> <span class="ident">node</span>.<span class="ident">kind_id</span>();
+                            <span class="ident">kind_id</span> <span class="op">=</span><span class="op">=</span> <span class="ident">kind_FUNC</span> <span class="op">|</span><span class="op">|</span> <span class="ident">kind_id</span> <span class="op">=</span><span class="op">=</span> <span class="ident">kind_TYPE</span>
                         })
                     {
                         <span class="ident">work</span>.<span class="ident">push</span>(<span class="ident">Work</span>::<span class="ident">Node</span>(<span class="ident">modulefield</span>));
