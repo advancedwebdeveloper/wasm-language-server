@@ -189,9 +189,6 @@
 <span id="189">189</span>
 <span id="190">190</span>
 <span id="191">191</span>
-<span id="192">192</span>
-<span id="193">193</span>
-<span id="194">194</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">/// Elaborates parse trees into structured data to be cached in the database.</span>
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">document</span>::<span class="ident">Document</span>;
@@ -272,7 +269,7 @@
 
         <span class="kw">let</span> <span class="ident">language</span> <span class="op">=</span> <span class="ident">tree</span>.<span class="ident">language</span>();
 
-        <span class="kw">let</span> <span class="ident">kind_START</span> <span class="op">=</span> <span class="ident">language</span>.<span class="ident">id_for_node_kind</span>(<span class="string">&quot;START&quot;</span>, <span class="bool-val">true</span>);
+        <span class="kw">let</span> <span class="ident">kind_ENTRYPOINT</span> <span class="op">=</span> <span class="ident">language</span>.<span class="ident">id_for_node_kind</span>(<span class="string">&quot;ENTRYPOINT&quot;</span>, <span class="bool-val">true</span>);
         <span class="kw">let</span> <span class="ident">kind_FUNC</span> <span class="op">=</span> <span class="ident">language</span>.<span class="ident">id_for_node_kind</span>(<span class="string">&quot;func&quot;</span>, <span class="bool-val">true</span>);
         <span class="kw">let</span> <span class="ident">kind_MODULE</span> <span class="op">=</span> <span class="ident">language</span>.<span class="ident">id_for_node_kind</span>(<span class="string">&quot;module&quot;</span>, <span class="bool-val">true</span>);
         <span class="kw">let</span> <span class="ident">kind_TYPE</span> <span class="op">=</span> <span class="ident">language</span>.<span class="ident">id_for_node_kind</span>(<span class="string">&quot;type&quot;</span>, <span class="bool-val">true</span>);
@@ -313,7 +310,7 @@
                     }
                 },
 
-                <span class="ident">Work</span>::<span class="ident">Node</span>(<span class="ident">node</span>) <span class="kw">if</span> <span class="ident">node</span>.<span class="ident">kind_id</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">kind_START</span> <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Work</span>::<span class="ident">Node</span>(<span class="ident">node</span>) <span class="kw">if</span> <span class="ident">node</span>.<span class="ident">kind_id</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">kind_ENTRYPOINT</span> <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">module</span>) <span class="op">=</span> <span class="ident">node</span>.<span class="ident">child_by_field_id</span>(<span class="ident">field_MODULE</span>) {
                         <span class="ident">work</span>.<span class="ident">push</span>(<span class="ident">Work</span>::<span class="ident">Node</span>(<span class="ident">module</span>));
                     }
@@ -346,10 +343,7 @@
                     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">children_count</span> <span class="op">=</span> <span class="number">0</span>;
                     <span class="kw">for</span> <span class="ident">modulefield</span> <span class="kw">in</span> <span class="ident">node</span>
                         .<span class="ident">children_by_field_id</span>(<span class="ident">field_MODULEFIELD</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">node</span>.<span class="ident">walk</span>())
-                        .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">node</span><span class="op">|</span> {
-                            <span class="kw">let</span> <span class="ident">kind_id</span> <span class="op">=</span> <span class="ident">node</span>.<span class="ident">kind_id</span>();
-                            <span class="ident">kind_id</span> <span class="op">=</span><span class="op">=</span> <span class="ident">kind_FUNC</span> <span class="op">|</span><span class="op">|</span> <span class="ident">kind_id</span> <span class="op">=</span><span class="op">=</span> <span class="ident">kind_TYPE</span>
-                        })
+                        .<span class="ident">filter</span>(<span class="op">|</span><span class="ident">node</span><span class="op">|</span> <span class="ident">node</span>.<span class="ident">kind_id</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">kind_FUNC</span> <span class="op">|</span><span class="op">|</span> <span class="ident">node</span>.<span class="ident">kind_id</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">kind_TYPE</span>)
                     {
                         <span class="ident">work</span>.<span class="ident">push</span>(<span class="ident">Work</span>::<span class="ident">Node</span>(<span class="ident">modulefield</span>));
                         <span class="ident">children_count</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
