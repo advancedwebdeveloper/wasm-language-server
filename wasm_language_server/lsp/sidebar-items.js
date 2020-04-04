@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["node",""]]});
+initSidebarItems({"mod":[["capabilities",""],["server",""],["session",""]]});

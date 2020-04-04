@@ -1,3 +1,3 @@
 (function() {var implementors = {};
-implementors["wasm_language_server"] = [{"text":"impl LanguageServer for <a class=\"struct\" href=\"wasm_language_server/server/struct.Session.html\" title=\"struct wasm_language_server::server::Session\">Session</a>","synthetic":false,"types":["wasm_language_server::server::Session"]}];
+implementors["wasm_language_server"] = [{"text":"impl LanguageServer for <a class=\"struct\" href=\"wasm_language_server/lsp/session/struct.Session.html\" title=\"struct wasm_language_server::lsp::session::Session\">Session</a>","synthetic":false,"types":["wasm_language_server::lsp::session::Session"]}];
 if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
