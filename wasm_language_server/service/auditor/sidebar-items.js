@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["tree_did_change",""],["tree_did_close",""],["tree_did_open",""]]});
+initSidebarItems({"mod":[["tree","Functions related to processing parse tree events for a document."]]});

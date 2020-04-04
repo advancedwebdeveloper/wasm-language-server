@@ -13,16 +13,18 @@
 <span id="13">13</span>
 <span id="14">14</span>
 <span id="15">15</span>
+<span id="16">16</span>
 </pre><div class="example-wrap"><pre class="rust ">
-<span class="doccomment">/// Elaborates parse trees into structured data to be cached in the database.</span>
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">core</span>::<span class="ident">document</span>::<span class="ident">Document</span>;
-<span class="kw">use</span> <span class="ident">dashmap</span>::<span class="ident">DashMap</span>;
+<span class="doccomment">//! Elaborator definitions specific to &quot;.wat&quot; files.</span>
+
+<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">core</span>::<span class="ident">session</span>::<span class="ident">Session</span>;
 <span class="kw">use</span> <span class="ident">lsp_types</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">sync</span>::<span class="ident">Arc</span>;
 
 <span class="comment">// FIXME: reorganize this to where outline is pulled from database</span>
+<span class="doccomment">/// Compute the symbols for a given document.</span>
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">document_symbol</span>(
-    <span class="ident">_documents</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">DashMap</span><span class="op">&lt;</span><span class="ident">Url</span>, <span class="ident">Document</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="ident">_session</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Session</span><span class="op">&gt;</span>,
     <span class="ident">_params</span>: <span class="ident">DocumentSymbolParams</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">jsonrpc_core</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">DocumentSymbolResponse</span><span class="op">&gt;</span><span class="op">&gt;</span> {
     <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>

@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["capabilities",""],["server",""],["session",""]]});
+initSidebarItems({"mod":[["api","Definitions for the request handlers."],["capabilities","Definitions for the server feature capabilities."],["server","Definitions for the server instance."]]});

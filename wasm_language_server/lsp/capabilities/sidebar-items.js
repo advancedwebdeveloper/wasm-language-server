@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["capabilities",""]]});
+initSidebarItems({"fn":[["capabilities","Compute the server capabilities."]]});

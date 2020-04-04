@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["Language",""]]});
+initSidebarItems({"enum":[["Language","Languages supported by the server."]]});

@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["node",""]]});
+initSidebarItems({"mod":[["node","Functions for creation of lsp data from tree-sitter nodes."]]});

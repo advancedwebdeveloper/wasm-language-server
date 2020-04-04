@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["cli",""]]});
+initSidebarItems({"fn":[["cli","Invokes the command-line interface for the WASM language server."]]});

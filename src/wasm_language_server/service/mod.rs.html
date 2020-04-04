@@ -15,23 +15,27 @@
 <span id="15">15</span>
 <span id="16">16</span>
 <span id="17">17</span>
+<span id="18">18</span>
+<span id="19">19</span>
 </pre><div class="example-wrap"><pre class="rust ">
-<span class="doccomment">/// Computes queries about documents.</span>
+<span class="doccomment">//! Services (components) of the WASM language server.</span>
+
+<span class="comment">// Computes queries about documents.</span>
 <span class="kw">mod</span> <span class="ident">analyzer</span>;
 
-<span class="doccomment">/// Collects diagnostics for documents with syntax errors, etc.</span>
+<span class="comment">// Collects diagnostics for documents with syntax and validation errors.</span>
 <span class="kw">mod</span> <span class="ident">auditor</span>;
 
-<span class="doccomment">/// Elaborates parse trees into structured data to be cached in the database.</span>
+<span class="comment">// Elaborates parse trees into structured data to be cached in the database.</span>
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod</span> <span class="ident">elaborator</span>;
 
-<span class="doccomment">/// Computes highlights for documents.</span>
+<span class="comment">// Computes highlights for documents.</span>
 <span class="kw">mod</span> <span class="ident">highlighter</span>;
 
-<span class="doccomment">/// Synchronizes document changes between editor and server.</span>
+<span class="comment">// Synchronizes document changes between editor and server.</span>
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod</span> <span class="ident">synchronizer</span>;
 
-<span class="doccomment">/// Synthesizes typing information for documents.</span>
+<span class="comment">// Synthesizes typing information for documents.</span>
 <span class="kw">mod</span> <span class="ident">synthesizer</span>;
 </pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../../";window.currentCrate = "wasm_language_server";</script><script src="../../../aliases.js"></script><script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script><script defer src="../../../search-index.js"></script></body></html>

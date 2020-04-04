@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["Error",""]]});
+initSidebarItems({"enum":[["Error","Runtime errors for the WASM language server."]]});

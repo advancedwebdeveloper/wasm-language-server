@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["document_symbol",""]]});
+initSidebarItems({"fn":[["document_symbol","Compute the symbols for a given document."]]});

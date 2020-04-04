@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["try_from",""],["wast",""],["wat",""],["wit",""],["witx",""]]});
+initSidebarItems({"fn":[["try_from",""],["wast","Create a wast parser from the tree-sitter grammar."],["wat","Create a wat parser from the tree-sitter grammar."],["wit","Create a wit parser from the tree-sitter grammar."],["witx","Create a witx parser from the tree-sitter grammar."]]});

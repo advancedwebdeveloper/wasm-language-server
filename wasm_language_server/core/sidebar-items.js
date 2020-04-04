@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["database",""],["document",""],["error",""],["language",""],["parser",""]]});
+initSidebarItems({"mod":[["database","Core functionality related to the document metadata database."],["document","Core functionality related to documents."],["error","Core functionality related to runtime errors."],["language","Core functionality related to document languages."],["parser","Core functionality related to document parsers."],["session","Core functionality related to the LSP server session."]]});

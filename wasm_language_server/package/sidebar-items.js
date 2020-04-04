@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["metadata",""]]});
+initSidebarItems({"mod":[["metadata","Metadata for the crate computed from the Cargo manifest and repository."]]});

@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["end",""],["start",""]]});
+initSidebarItems({"fn":[["end","Creates an lsp position from the ending position of a tree-sitter node."],["start","Creates an lsp position from the starting position of a tree-sitter node."]]});

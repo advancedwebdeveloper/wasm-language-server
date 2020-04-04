@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["name_and_ranges",""],["range",""]],"mod":[["position",""]],"struct":[["NameAndRanges",""]]});
+initSidebarItems({"fn":[["name_and_ranges","Compute the name and ranges for a document symbol given tree-sitter node data."],["range","Creates an lsp range from the range of a tree-sitter node."]],"mod":[["position","Functions for creation of lsp position data from tree-sitter nodes."]],"struct":[["NameAndRanges","Convenience type for packaging a (symbol) name with an lsp range and selection range."]]});

@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["tasks_change_tree",""],["tasks_did_change",""],["tasks_did_close",""],["tasks_did_open",""],["tasks_open_tree",""]]});
+initSidebarItems({"mod":[["document","Functions related to processing events for a document."],["tree","Functions related to processing parse tree events for a document."]]});

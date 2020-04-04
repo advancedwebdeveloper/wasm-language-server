@@ -1,1 +1,1 @@
-initSidebarItems({});
+initSidebarItems({"struct":[["Server","The WASM language server instance."]]});
