@@ -1,1 +1,0 @@
-initSidebarItems({"fn":[["change","Handle a document \"change\" event."],["close","Handle a document \"close\" event."],["open","Handle a document \"open\" event."]]});

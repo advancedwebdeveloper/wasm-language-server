@@ -53,6 +53,9 @@
 <span id="53">53</span>
 <span id="54">54</span>
 <span id="55">55</span>
+<span id="56">56</span>
+<span id="57">57</span>
+<span id="58">58</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Definitions for the request handlers.</span>
 
@@ -81,24 +84,27 @@
         <span class="prelude-val">Ok</span>(())
     }
 
+    <span class="comment">// FIXME: remove on next tower-lsp release</span>
+    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unsafe_code</span>)]</span>
     <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">did_open</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">client</span>: <span class="kw-2">&amp;</span><span class="ident">Client</span>, <span class="ident">params</span>: <span class="ident">DidOpenTextDocumentParams</span>) {
-        <span class="comment">// FIXME: remove on next tower-lsp release</span>
         <span class="kw">let</span> <span class="ident">client</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">Client</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">std</span>::<span class="ident">mem</span>::<span class="ident">transmute</span>(<span class="ident">client</span>) };
         <span class="kw">crate</span>::<span class="ident">service</span>::<span class="ident">synchronizer</span>::<span class="ident">document</span>::<span class="ident">open</span>(<span class="self">self</span>.<span class="ident">session</span>.<span class="ident">clone</span>(), <span class="ident">client</span>, <span class="ident">params</span>)
             .<span class="kw">await</span>
             .<span class="ident">unwrap</span>()
     }
 
+    <span class="comment">// FIXME: remove on next tower-lsp release</span>
+    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unsafe_code</span>)]</span>
     <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">did_change</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">client</span>: <span class="kw-2">&amp;</span><span class="ident">Client</span>, <span class="ident">params</span>: <span class="ident">DidChangeTextDocumentParams</span>) {
-        <span class="comment">// FIXME: remove on next tower-lsp release</span>
         <span class="kw">let</span> <span class="ident">client</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">Client</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">std</span>::<span class="ident">mem</span>::<span class="ident">transmute</span>(<span class="ident">client</span>) };
         <span class="kw">crate</span>::<span class="ident">service</span>::<span class="ident">synchronizer</span>::<span class="ident">document</span>::<span class="ident">change</span>(<span class="self">self</span>.<span class="ident">session</span>.<span class="ident">clone</span>(), <span class="ident">client</span>, <span class="ident">params</span>)
             .<span class="kw">await</span>
             .<span class="ident">unwrap</span>()
     }
 
+    <span class="comment">// FIXME: remove on next tower-lsp release</span>
+    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unsafe_code</span>)]</span>
     <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">did_close</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">client</span>: <span class="kw-2">&amp;</span><span class="ident">Client</span>, <span class="ident">params</span>: <span class="ident">DidCloseTextDocumentParams</span>) {
-        <span class="comment">// FIXME: remove on next tower-lsp release</span>
         <span class="kw">let</span> <span class="ident">client</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">Client</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">std</span>::<span class="ident">mem</span>::<span class="ident">transmute</span>(<span class="ident">client</span>) };
         <span class="kw">crate</span>::<span class="ident">service</span>::<span class="ident">synchronizer</span>::<span class="ident">document</span>::<span class="ident">close</span>(<span class="self">self</span>.<span class="ident">session</span>.<span class="ident">clone</span>(), <span class="ident">client</span>, <span class="ident">params</span>)
             .<span class="kw">await</span>

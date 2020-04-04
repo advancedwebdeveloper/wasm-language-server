@@ -1,3 +1,0 @@
-(function() {var implementors = {};
-implementors["wasm_language_server"] = [{"text":"impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html\" title=\"trait core::marker::Copy\">Copy</a> for <a class=\"enum\" href=\"wasm_language_server/core/language/enum.Language.html\" title=\"enum wasm_language_server::core::language::Language\">Language</a>","synthetic":false,"types":["wasm_language_server::core::language::Language"]}];
-if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

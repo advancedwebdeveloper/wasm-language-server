@@ -18,7 +18,7 @@
 <span class="kw">use</span> <span class="ident">clap</span>::<span class="ident">App</span>;
 
 <span class="doccomment">/// Invokes the command-line interface for the WASM language server.</span>
-<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn</span> <span class="ident">cli</span>() {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cli</span>() {
     <span class="ident">App</span>::<span class="ident">new</span>(<span class="ident">metadata</span>::<span class="ident">PKG_NAME</span>)
         .<span class="ident">author</span>(<span class="ident">metadata</span>::<span class="ident">PKG_AUTHORS</span>)
         .<span class="ident">version</span>(<span class="ident">metadata</span>::<span class="ident">PKG_VERSION</span>)

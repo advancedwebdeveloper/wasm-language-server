@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["Database","Caches elaborated syntax and metadata of documents."]]});

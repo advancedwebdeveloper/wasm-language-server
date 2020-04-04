@@ -1,1 +1,0 @@
-initSidebarItems({"fn":[["change","Handle a parse tree \"change\" event."],["open","Handle a parse tree \"open\" event."]]});

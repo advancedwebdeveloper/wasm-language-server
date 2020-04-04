@@ -44,14 +44,23 @@
 <span id="44">44</span>
 <span id="45">45</span>
 <span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Core functionality related to document parsers.</span>
+
+<span class="comment">// FIXME: move these to a subcrate</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">core</span>::{<span class="ident">error</span>::<span class="ident">Error</span>, <span class="ident">language</span>::<span class="ident">Language</span>};
 <span class="kw">use</span> <span class="ident">failure</span>::<span class="ident">Fallible</span>;
 <span class="kw">use</span> <span class="ident">tree_sitter</span>;
 
 <span class="doccomment">/// Create a wast parser from the tree-sitter grammar.</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unsafe_code</span>)]</span>
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">wast</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Fallible</span><span class="op">&lt;</span><span class="ident">tree_sitter</span>::<span class="ident">Parser</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">language</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="kw">crate</span>::<span class="ident">tree_sitter_wast</span>() };
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">parser</span> <span class="op">=</span> <span class="ident">tree_sitter</span>::<span class="ident">Parser</span>::<span class="ident">new</span>();
@@ -60,6 +69,7 @@
 }
 
 <span class="doccomment">/// Create a wat parser from the tree-sitter grammar.</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unsafe_code</span>)]</span>
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">wat</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Fallible</span><span class="op">&lt;</span><span class="ident">tree_sitter</span>::<span class="ident">Parser</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">language</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="kw">crate</span>::<span class="ident">tree_sitter_wat</span>() };
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">parser</span> <span class="op">=</span> <span class="ident">tree_sitter</span>::<span class="ident">Parser</span>::<span class="ident">new</span>();
@@ -68,6 +78,7 @@
 }
 
 <span class="doccomment">/// Create a wit parser from the tree-sitter grammar.</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unsafe_code</span>)]</span>
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">wit</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Fallible</span><span class="op">&lt;</span><span class="ident">tree_sitter</span>::<span class="ident">Parser</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">language</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="kw">crate</span>::<span class="ident">tree_sitter_wit</span>() };
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">parser</span> <span class="op">=</span> <span class="ident">tree_sitter</span>::<span class="ident">Parser</span>::<span class="ident">new</span>();
@@ -76,6 +87,7 @@
 }
 
 <span class="doccomment">/// Create a witx parser from the tree-sitter grammar.</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unsafe_code</span>)]</span>
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">witx</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Fallible</span><span class="op">&lt;</span><span class="ident">tree_sitter</span>::<span class="ident">Parser</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">language</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="kw">crate</span>::<span class="ident">tree_sitter_witx</span>() };
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">parser</span> <span class="op">=</span> <span class="ident">tree_sitter</span>::<span class="ident">Parser</span>::<span class="ident">new</span>();
