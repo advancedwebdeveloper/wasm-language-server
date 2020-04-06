@@ -102,7 +102,6 @@
 <span id="102">102</span>
 <span id="103">103</span>
 <span id="104">104</span>
-<span id="105">105</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Core functionality related to the LSP server session.</span>
 
@@ -117,22 +116,21 @@
 };
 <span class="kw">use</span> <span class="ident">futures</span>::<span class="ident">stream</span>::{<span class="self">self</span>, <span class="ident">StreamExt</span>};
 <span class="kw">use</span> <span class="ident">lsp_types</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">sync</span>::<span class="ident">Arc</span>;
 <span class="kw">use</span> <span class="ident">zerocopy</span>::<span class="ident">AsBytes</span>;
 
 <span class="doccomment">/// Represents the current state of the LSP service.</span>
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">Session</span> {
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">dead_code</span>)]</span>
+    <span class="doccomment">/// The document metadata database.</span>
     <span class="ident">database</span>: <span class="ident">Database</span>,
     <span class="doccomment">/// The store of currently open documents.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">documents</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">DashMap</span><span class="op">&lt;</span><span class="ident">Url</span>, <span class="ident">Document</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    <span class="ident">documents</span>: <span class="ident">DashMap</span><span class="op">&lt;</span><span class="ident">Url</span>, <span class="ident">Document</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Session</span> {
     <span class="doccomment">/// Create a new session.</span>
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Fallible</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">database</span> <span class="op">=</span> <span class="ident">Database</span>::<span class="ident">new</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">documents</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">new</span>(<span class="ident">DashMap</span>::<span class="ident">new</span>());
+        <span class="kw">let</span> <span class="ident">documents</span> <span class="op">=</span> <span class="ident">DashMap</span>::<span class="ident">new</span>();
         <span class="prelude-val">Ok</span>(<span class="ident">Session</span> { <span class="ident">database</span>, <span class="ident">documents</span> })
     }
 
