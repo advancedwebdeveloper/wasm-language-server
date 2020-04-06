@@ -108,7 +108,7 @@
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Core functionality related to document languages.</span>
 
-<span class="kw">use</span> <span class="ident">failure</span>::{<span class="ident">Error</span>, <span class="ident">Fallible</span>};
+<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">core</span>::<span class="ident">error</span>::<span class="ident">Fallible</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">convert</span>::<span class="ident">TryFrom</span>;
 
 <span class="doccomment">/// Languages supported by the server.</span>
@@ -121,7 +121,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">TryFrom</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Language</span> {
-    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">Error</span>;
+    <span class="kw">type</span> <span class="ident">Error</span> <span class="op">=</span> <span class="ident">anyhow</span>::<span class="ident">Error</span>;
 
     <span class="kw">fn</span> <span class="ident">try_from</span>(<span class="ident">language_id</span>: <span class="ident">String</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Fallible</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="kw">match</span> <span class="ident">language_id</span>.<span class="ident">as_ref</span>() {

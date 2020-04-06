@@ -48,17 +48,15 @@
 <span id="48">48</span>
 <span id="49">49</span>
 <span id="50">50</span>
-<span id="51">51</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Core functionality related to document parsers.</span>
 
 <span class="comment">// FIXME: move these to a subcrate</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">core</span>::{
-    <span class="ident">error</span>::<span class="ident">Error</span>,
+    <span class="ident">error</span>::{<span class="ident">Error</span>, <span class="ident">Fallible</span>},
     <span class="ident">language</span>::{<span class="self">self</span>, <span class="ident">Language</span>},
 };
-<span class="kw">use</span> <span class="ident">failure</span>::<span class="ident">Fallible</span>;
 <span class="kw">use</span> <span class="ident">tree_sitter</span>;
 
 <span class="doccomment">/// Create a wast parser from the tree-sitter grammar.</span>

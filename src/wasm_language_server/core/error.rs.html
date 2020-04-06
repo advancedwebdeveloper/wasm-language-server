@@ -17,24 +17,30 @@
 <span id="17">17</span>
 <span id="18">18</span>
 <span id="19">19</span>
+<span id="20">20</span>
+<span id="21">21</span>
+<span id="22">22</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Core functionality related to runtime errors.</span>
 
-<span class="kw">use</span> <span class="ident">failure</span>::<span class="ident">Fail</span>;
+<span class="kw">use</span> <span class="ident">thiserror</span>::<span class="ident">Error</span>;
 <span class="kw">use</span> <span class="ident">tree_sitter</span>;
+
+<span class="doccomment">/// Convenience type for computations that may fail with an error.</span>
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">type</span> <span class="ident">Fallible</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">anyhow</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>;
 
 <span class="doccomment">/// Runtime errors for the WASM language server.</span>
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">enum_variant_names</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Fail</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Error</span>)]</span>
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">enum</span> <span class="ident">Error</span> {
     <span class="doccomment">/// Error that occurs when parsing an invalid language-id string.</span>
-    <span class="attribute">#[<span class="ident">fail</span>(<span class="ident">display</span> <span class="op">=</span> <span class="string">&quot;core::InvalidLanguageId: {}&quot;</span>, <span class="number">0</span>)]</span>
+    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;core::InvalidLanguageId: {0}&quot;</span>)]</span>
     <span class="ident">CoreInvalidLanguageId</span>(<span class="ident">String</span>),
     <span class="doccomment">/// Error that occurs when attempting to set an invalid language for a tree-sitter parser.</span>
-    <span class="attribute">#[<span class="ident">fail</span>(<span class="ident">display</span> <span class="op">=</span> <span class="string">&quot;tree_sitter::LanguageError: {}&quot;</span>, <span class="number">0</span>)]</span>
+    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;tree_sitter::LanguageError: {0}&quot;</span>)]</span>
     <span class="ident">TreeSitterLanguageError</span>(<span class="ident">tree_sitter</span>::<span class="ident">LanguageError</span>),
     <span class="doccomment">/// Error that occurs when attempting to create a tree-sitter query from invalid source.</span>
-    <span class="attribute">#[<span class="ident">fail</span>(<span class="ident">display</span> <span class="op">=</span> <span class="string">&quot;tree_sitter::QueryError&quot;</span>)]</span>
+    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;tree_sitter::QueryError&quot;</span>)]</span>
     <span class="ident">TreeSitterQueryError</span>(<span class="ident">tree_sitter</span>::<span class="ident">QueryError</span>),
 }
 </pre></div>
