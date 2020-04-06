@@ -20,6 +20,17 @@
 <span id="20">20</span>
 <span id="21">21</span>
 <span id="22">22</span>
+<span id="23">23</span>
+<span id="24">24</span>
+<span id="25">25</span>
+<span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
+<span id="29">29</span>
+<span id="30">30</span>
+<span id="31">31</span>
+<span id="32">32</span>
+<span id="33">33</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Core functionality related to runtime errors.</span>
 
@@ -42,6 +53,17 @@
     <span class="doccomment">/// Error that occurs when attempting to create a tree-sitter query from invalid source.</span>
     <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;tree_sitter::QueryError&quot;</span>)]</span>
     <span class="ident">TreeSitterQueryError</span>(<span class="ident">tree_sitter</span>::<span class="ident">QueryError</span>),
+}
+
+<span class="doccomment">/// Convenience newtype wrapper for convertion to jsonrpc_core::Error.</span>
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">IntoJsonRpcError</span>(<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">anyhow</span>::<span class="ident">Error</span>);
+
+<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">IntoJsonRpcError</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">jsonrpc_core</span>::<span class="ident">Error</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">error</span>: <span class="ident">IntoJsonRpcError</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rpc_error</span> <span class="op">=</span> <span class="ident">jsonrpc_core</span>::<span class="ident">error</span>::<span class="ident">Error</span>::<span class="ident">internal_error</span>();
+        <span class="ident">rpc_error</span>.<span class="ident">message</span> <span class="op">=</span> <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">error</span>.<span class="number">0</span>);
+        <span class="ident">rpc_error</span>
+    }
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../../";window.currentCrate = "wasm_language_server";</script><script src="../../../aliases.js"></script><script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script><script defer src="../../../search-index.js"></script></body></html>
